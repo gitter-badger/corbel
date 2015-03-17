@@ -19,9 +19,9 @@ title:       "corbel"
 keywords:    "corbel, jekyll, rest, github, blog, backend, oauth"
 description: ""
 email: dev@bq.com
-source_link: "http://corbel.docs.bqws.io"
-url: "http://corbel.docs.bqws.io" # the base hostname & protocol for your site
-baseurl: "" # the subpath of your site, e.g. /blog/
+source_link: "http://opensource.bq.com"
+url: "http://opensource.bq.com" # the base hostname & protocol for your site
+baseurl: "/corbel" # the subpath of your site, e.g. /blog/
 favicon:     "img/favicon.ico"
 touch_icon:  "img/apple-touch-icon.png"
 google_analytics_key: 
