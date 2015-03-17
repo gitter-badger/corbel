@@ -1,3 +1,3 @@
 # corbel
 
-Documentación relacionada con el proyecto [corbel](http://corbel.docs.bqws.io/).
+Documentación relacionada con el proyecto [corbel](http://opensource.bq.com/corbel/).
