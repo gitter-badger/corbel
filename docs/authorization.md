@@ -336,15 +336,9 @@ Es posible definir scopes que engloben a varios scopes. Una definición válida 
 
 ### Scopes con parámetros configurables
 
-Los scopes soportan parámetros definidos con una expresión regular. Puede verse
-un ejemplo a continuación:
+Los scopes soportan parámetros definidos con una expresión regular. Puede verse un ejemplo a continuación:
 
-Supongamos que queremos prestar un libro desde el módulo de préstamos. Esto se
-haría mediante un asset que permitiría acceder temporalmente a ese libro
-concreto. Sin los scopes configurables, habría que crear un scope por cada uno
-de los libros para poder asignarlo en los préstamos; en cambio, con los scopes
-configurables, sólo tenemos que tener uno para todos los libros. El nuevo scope
-tendría una forma similar al siguiente:
+Supongamos que queremos prestar un libro desde el módulo de préstamos. Esto se haría mediante un asset que permitiría acceder temporalmente a ese libro concreto. Sin los scopes configurables, habría que crear un scope por cada uno de los libros para poder asignarlo en los préstamos; en cambio, con los scopes configurables, sólo tenemos que tener uno para todos los libros. El nuevo scope tendría una forma similar al siguiente:
 
 ```
 {
