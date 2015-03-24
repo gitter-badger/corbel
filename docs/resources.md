@@ -2,16 +2,18 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
+  - [](#)
+  - [permalink: /docs/resources.html](#permalink-docsresourceshtml)
 - [Resources API](#resources-api)
   - [Versionado](#versionado)
   - [URIs: completas vs forma canónica](#uris-completas-vs-forma-canónica)
     - [Ejemplo namespaces](#ejemplo-namespaces)
-  - [](#)
-- [URI templates](#uri-templates)
   - [](#-1)
+- [URI templates](#uri-templates)
+  - [](#-2)
 - [Parámetros de la petición](#parámetros-de-la-petición)
   - [Parámetros permitidos](#parámetros-permitidos)
-  - [](#-2)
+  - [](#-3)
 - [API query language](#api-query-language)
   - [Filtros](#filtros)
     - [Operador](#operador)
@@ -20,17 +22,24 @@
       - [Tipos permitidos](#tipos-permitidos)
       - [Ejemplos de valor](#ejemplos-de-valor)
     - [Ejemplos de filtro](#ejemplos-de-filtro)
-  - [](#-3)
+  - [](#-4)
 - [API aggregation language](#api-aggregation-language)
   - [Ejemplos de agregación](#ejemplos-de-agregación)
-  - [](#-4)
+  - [](#-5)
 - [Negociación de contenido](#negociación-de-contenido)
   - [Ejemplo de negociación](#ejemplo-de-negociación)
-  - [](#-5)
+  - [](#-6)
 - [Implementación](#implementación)
   - [REM](#rem)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+---
+layout: page
+permalink: /docs/resources.html
+---
+
+
 
 # Resources API
 
