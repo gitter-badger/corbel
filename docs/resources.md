@@ -3,21 +3,23 @@ layout: page
 permalink: /docs/resources.html
 ---
 
+
+
 # Resources API
 
 La API de recursos en corbel está implementada sobre una interfaz muy flexible que permite servir cualquier tipo de representación de un recurso. usando los patrones definidos por esta API, se puede desplegar cualquier tipo de recurso con un impacto mínimo sobre los clientes y servidor.
 
 ## Versionado
 
-El primer nivel de todas las URL de la API es siempre la versión de ésta última, y tiene la forma v{número}. 
+El primer nivel de todas las URL de la API es siempre la versión de ésta última, y tiene la forma v{número}. Todas las URLs contenidas en este documento se expresan partiendo de ĺa versión como raíz
 
 ```
-https://resources-staging.bqws.io/v1.0/media:Track/555
+https://resources-staging.bqws.io/v1.0/resource/media:Track/555
 ```
 
 ## URIs: completas vs forma canónica
 
-Todo recurso en la API se identifica a través de su URI. En corbel, por razones prácticas, siempre utilizamos la forma canónoca de la URI (canonical form), formada por namespace:id, en lugar de la URI 'completa' (fully quilified name). Los namespaces se definen mediante la propia API y los clientes los pueden consultar en {resources_api}/namespaces
+Todo recurso en la API se identifica a través de su URI. En corbel, por razones prácticas, siempre utilizamos la forma canónoca de la URI (canonical form), formada por namespace:id, en lugar de la URI 'completa' (fully qualified name). Los namespaces se definen mediante la propia API y los clientes los pueden consultar en /api/namespaces
 
 
 ### Ejemplo namespaces
@@ -47,28 +49,28 @@ Con estos namespaces podíramos crear las siguientes formas canónicas
 
 corbel cuenta únicamente con 3 formas diferentes de URL
 
-* **Collection**: conjunto de recursos. URI template: resources_api/{collection}
+* **Collection**: conjunto de recursos. URI template: /resource/{collection}
 
 ```
-resources_api/media:Track
-resources_api/product:Cellphone
-resources_api/entity:Artist
+/resource/media:Track
+/resource/product:Cellphone
+/resource/entity:Artist
 ```
 
-* **Resource**: recurso particular. URI template: resources_api/{collection}/{resource_id}
+* **Resource**: recurso particular. URI template: /resource/{collection}/{resource_id}
 
 ```
-resources_api/media:Track/555
-resources_api/product:Cellphone/aquaris5
-resources_api/entity:Artist/123
+/resource/media:Track/555
+/resource/product:Cellphone/aquaris5
+/resource/entity:Artist/123
 ```
 
-* **Relation**: relación entre un recurso particular y una colección. URI template: resources_api/{collection}/{resource_id}/{relation_collection}
+* **Relation**: relación entre un recurso particular y una colección. URI template: /resource/{collection}/{resource_id}/{relation_collection}
 
 ```
-resources_api/media:Album/456/media:tracks
-resources_api/media:Book/555/media:authors
-resources_api/media:Videogame/asdf/media:related
+/resource/media:Album/456/media:tracks
+/resource/media:Book/555/media:authors
+/resource/media:Videogame/asdf/media:related
 ```
 
 
@@ -245,17 +247,25 @@ Accept: audio/mp3
 
 # Implementación
 
-La implementación de la API de recursos se basa en una arquitectura modular que permite la extensibilidad de la APi a nuevos dominios.
+La implementación de la API de recursos se basa en una arquitectura modular que permite la extensibilidad de la API a nuevos dominios mediante un sistema de plugins.
 
 ![resources implementation](/img/resources-implementation.png)
 
+Cuando llega una petición, el servicio recupera un Resource Resolver Module (REM) del registro, que será quien finalmente resuelva la petición, accediendo a base de datos y/o servicios externos.
+
+La selección del REM se realiza en base a la URI + MediaType + HTTP Method. En el caso del MediaType, se escoge aquel REM que sea más específico, por ejemplo, si el cliente en la petición indica image/jpeg, y hay 2 REM candidatos, uno registrado con image/* y el otro con image/jpeg, se escogerá éste último.
+
+Cada plugin puede registrar tantos REM como requiera.
+
 ## REM
 
-## RESMI
+Hay 3 operaciones que puede implementar un rem: collection, resource y relation. Cada plugin REM implementará aquellas funciones necesarias para la resolución de sus recursos, es decir, no todos los REM tienen por qué implementar las 3 operaciones.
 
-## RESTOR
+Existen 3 plugin genéricos:
 
-## IMAGE
+* RESMI. Resuelve todas las peticiones cuyo MediaType sea application/json.
 
+* RESTOR. Resuleve todas las peticiones GET, PUT y DELETE de cualquier MediaType. Este plugin se encarga de gestionar los binarios.
 
+* IMAGE. Resuelve aquellas peticiones GET cuyo MediaType sea image/*. Este plugin se usa para hacer escalados de imagenes.
 
