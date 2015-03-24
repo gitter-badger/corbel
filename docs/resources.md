@@ -249,7 +249,7 @@ Accept: audio/mp3
 
 La implementación de la API de recursos se basa en una arquitectura modular que permite la extensibilidad de la API a nuevos dominios mediante un sistema de plugins.
 
-![resources implementation](/img/resources-implementation.png)
+![resources implementation](img/resources-implementation.png)
 
 Cuando llega una petición, el servicio recupera un Resource Resolver Module (REM) del registro, que será quien finalmente resuelva la petición, accediendo a base de datos y/o servicios externos.
 
