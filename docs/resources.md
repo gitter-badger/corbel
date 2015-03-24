@@ -138,8 +138,6 @@ El filtro tiene la siguiente forma:
 }
 ```
 
-Donde operator representa el filtro que se va a aplicar, field representa un atributo de la entidad de la colección sobre la que se está realizando el filtro.
-
 ### Operador
 
 El operador representa el filtro que se va a aplicar. Comienzan siempre con el carácter $.
