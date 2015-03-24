@@ -333,6 +333,41 @@ Es posible definir scopes que engloben a varios scopes. Una definición válida 
 } 
 ```
 
+### Scopes con parámetros configurables
+
+Los scopes soportan parámetros definidos con una expresión regular. Puede verse
+un ejemplo a continuación:
+
+Supongamos que queremos prestar un libro desde el módulo de préstamos. Esto se
+haría mediante un asset que permitiría acceder temporalmente a ese libro
+concreto. Sin los scopes configurables, habría que crear un scope por cada uno
+de los libros para poder asignarlo en los préstamos; en cambio, con los scopes
+configurables, sólo tenemos que tener uno para todos los libros. El nuevo scope
+tendría una forma similar al siguiente:
+
+```
+{
+    _id: "borrow:book",
+    audience: "http://resources.bqws.io",
+    rules: [
+        {
+            mediaTypes: [
+                "application/json"
+            ],
+            methods: [
+                "GET"
+            ],
+            type: "http_access",
+            uri: "v.*/resource/books:Book/{{resourceId}}"
+        }
+    ],
+    scopes: [],
+    parameters: {
+        resourceId: "[A-Za-z]+"
+    }
+}
+```
+
 ### Scopes básicos por servicios:
 
 Cada uno de los módulos ofrecidos por corbel tiene una funcionalidad susceptible de ser controlada por diferentes Scopes. A continuación se muestran los Scopes que podríamos denominar como genéricos para todos los proyectos:
