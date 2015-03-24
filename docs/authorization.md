@@ -14,6 +14,7 @@ permalink: /docs/authorization.html
 <li><a href="#cómo-se-definen">¿Cómo se definen?</a></li>
 <li><a href="#dónde-aplican">¿Dónde aplican?</a></li>
 <li><a href="#scopes-compuestos">Scopes compuestos</a></li>
+<li><a href="#scopes-con-parámetros-configurables">Scopes con parámetros configurables</a></li>
 <li><a href="#scopes-básicos-por-servicios">Scopes básicos por servicios:</a></li>
 </ul>
 </li>
