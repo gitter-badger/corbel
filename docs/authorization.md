@@ -5,23 +5,24 @@ permalink: /docs/authorization.html
 
 
 <ul>
-<li><a href="#conceptos-básicos-autenticación-y-autorización">Conceptos básicos: Autenticación y autorización</a><ul>
+<li><a href="#conceptos-bsicos-autenticacin-y-autorizacin">Conceptos básicos: Autenticación y autorización</a><ul>
 <li><a href="#dominios-clientes-y-usuarios">Dominios, clientes y usuarios</a><ul>
 <li><a href="#ejemplos">Ejemplos</a></li>
 </ul>
 </li>
 <li><a href="#scopes">Scopes</a><ul>
-<li><a href="#cómo-se-definen">¿Cómo se definen?</a></li>
-<li><a href="#dónde-aplican">¿Dónde aplican?</a></li>
+<li><a href="#cmo-se-definen">¿Cómo se definen?</a></li>
+<li><a href="#dnde-aplican">¿Dónde aplican?</a></li>
 <li><a href="#scopes-compuestos">Scopes compuestos</a></li>
-<li><a href="#scopes-básicos-por-servicios">Scopes básicos por servicios:</a></li>
+<li><a href="#scopes-con-parmetros-configurables">Scopes con parámetros configurables</a></li>
+<li><a href="#scopes-bsicos-por-servicios">Scopes básicos por servicios:</a></li>
 </ul>
 </li>
-<li><a href="#autenticación">Autenticación</a><ul>
+<li><a href="#autenticacin">Autenticación</a><ul>
 <li><a href="#crear-un-jwt">Crear un JWT</a></li>
 <li><a href="#obtener-un-accesstoken">Obtener un accessToken</a><ul>
 <li><a href="#token-object">Token Object</a></li>
-<li><a href="#básica-iam-basic">Básica (IAM Basic)</a></li>
+<li><a href="#bsica-iam-basic">Básica (IAM Basic)</a></li>
 <li><a href="#basada-en-oauth">Basada en oauth</a></li>
 </ul>
 </li>
@@ -38,7 +39,7 @@ permalink: /docs/authorization.html
 <li><a href="#endpoints-del-entorno-de-desarrollo">Endpoints del entorno de desarrollo</a></li>
 </ul>
 </li>
-<li><a href="#cómo-se-ha-generado-este-documento">¿Cómo se ha generado este documento?</a></li>
+<li><a href="#cmo-se-ha-generado-este-documento">¿Cómo se ha generado este documento?</a></li>
 </ul>
 </li>
 </ul>
@@ -331,6 +332,35 @@ Es posible definir scopes que engloben a varios scopes. Una definición válida 
        "resources:bitbloq:release"
    ]
 } 
+```
+
+### Scopes con parámetros configurables
+
+Los scopes soportan parámetros definidos con una expresión regular. Puede verse un ejemplo a continuación:
+
+Supongamos que queremos prestar un libro desde el módulo de préstamos. Esto se haría mediante un asset que permitiría acceder temporalmente a ese libro concreto. Sin los scopes configurables, habría que crear un scope por cada uno de los libros para poder asignarlo en los préstamos; en cambio, con los scopes configurables, sólo tenemos que tener uno para todos los libros. El nuevo scope tendría una forma similar al siguiente:
+
+```
+{
+    _id: "borrow:book",
+    audience: "http://resources.bqws.io",
+    rules: [
+        {
+            mediaTypes: [
+                "application/json"
+            ],
+            methods: [
+                "GET"
+            ],
+            type: "http_access",
+            uri: "v.*/resource/books:Book/{{resourceId}}"
+        }
+    ],
+    scopes: [],
+    parameters: {
+        resourceId: "[A-Za-z]+"
+    }
+}
 ```
 
 ### Scopes básicos por servicios:
