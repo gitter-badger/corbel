@@ -10,6 +10,7 @@ La API de recursos en corbel está implementada sobre una interfaz muy flexible 
 ## Versionado
 
 El primer nivel de todas las URL de la API es siempre la versión de ésta última, y tiene la forma v{número}. 
+
 ```
 https://resources-staging.bqws.io/v1.0/media:Track/555
 ```
@@ -45,18 +46,23 @@ Con estos namespaces podíramos crear las siguientes formas canónicas
 corbel cuenta únicamente con 3 formas diferentes de URL
 
 * **Collection**: conjunto de recursos. URI template: resources_api/{collection}
+
 ```
 resources_api/media:Track
 resources_api/product:Cellphone
 resources_api/entity:Artist
 ```
+
 * **Resource**: recurso particular. URI template: resources_api/{collection}/{resource_id}
+
 ```
 resources_api/media:Track/555
 resources_api/product:Cellphone/aquaris5
 resources_api/entity:Artist/123
 ```
+
 * **Relation**: relación entre un recurso particular y una colección. URI template: resources_api/{collection}/{resource_id}/{relation_collection}
+
 ```
 resources_api/media:Album/456/media:tracks
 resources_api/media:Book/555/media:authors
