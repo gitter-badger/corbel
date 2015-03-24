@@ -33,7 +33,7 @@ permalink: /docs/resources.html
 
 # Resources API
 
-La API de recursos en corbel está implementada sobre una interfaz muy flexible que permite servir cualquier tipo de representación de un recurso. usando los patrones definidos por esta API, se puede desplegar cualquier tipo de recurso con un impacto mínimo sobre los clientes y servidor.
+La API de recursos en corbel está implementada sobre una interfaz muy flexible que permite servir cualquier tipo de representación de un recurso. Usando los patrones definidos por esta API, se puede desplegar cualquier tipo de recurso con un impacto mínimo sobre los clientes y servidor.
 
 ## Versionado
 
@@ -66,7 +66,7 @@ Con estos namespaces podíramos crear las siguientes formas canónicas
 |http://ontology.bqreaders.com/product/Cellphone/aquaris5|product:Cellphone/aquaris5|
 |http://ontology.bqreaders.com/entity/Publisher/planeta|entity:Publisher/planeta|
 |http://ontology.bqreaders.com/api/limit|api:limit|
-
+   
 
    
 ----------   
@@ -119,7 +119,7 @@ La petición puede contener parámetros que modifican la representación de la r
 |api:query|Query for a collection of resources. Using the query language described by this document|JSON Query String|/resource/media:Artist?api:query={"meta:label":"The Killers"}|
 |api:aggregation|Do aggreagtion operations with the resources|JSON Aggregation String|/resource/media:Artist?api:aggregation={"$count":"*"}|
 
-
+   
 
    
 ----------   
