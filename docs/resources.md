@@ -39,7 +39,9 @@ Con estos namespaces podíramos crear las siguientes formas canónicas
 |http://ontology.bqreaders.com/entity/Publisher/planeta|entity:Publisher/planeta|
 |http://ontology.bqreaders.com/api/limit|api:limit|
 
+
 ----------
+
 
 # URI templates
 
@@ -69,7 +71,9 @@ resources_api/media:Book/555/media:authors
 resources_api/media:Videogame/asdf/media:related
 ```
 
+
 ----------
+
 
 # Parámetros de la petición
 
@@ -85,11 +89,121 @@ La petición puede contener parámetros que modifican la representación de la r
 |api:query|Query for a collection of resources. Using the query language described by this document|JSON Query String|/resource/media:Artist?api:query={"meta:label":"The Killers"}|
 |api:aggregation|Do aggreagtion operations with the resources|JSON Aggregation String|/resource/media:Artist?api:aggregation={"$count":"*"}|
 
+
+
 ----------
 
+
 # API query language
+
+El parámetro api:query permite al usuaio realizar filtros en las búsquedas. Dicho parámetro debe ser epecificado como JSON Array, no vacío, donde cada elemento es un filtro que se aplicará en la llamada. Cada filtro, a su vez, es un JSON Object que tampoco puede estar sin contenido.
+
+## Filtros
+
+El filtro tiene la siguiente forma:
+
+```
+{
+	operador: {
+		campo : valor
+	}
+}
+```
+
+Donde operator representa el filtro que se va a aplicar, field representa un atributo de la entidad de la colección sobre la que se está realizando el filtro.
+
+### Operador
+
+El operador representa el filtro que se va a aplicar. Comienzan siempre con el carácter $.
+
+|Operator|Work with|Description|
+|---|---|---|
+|$eq|primitive|Check if the field and the value are equals|
+|$gt|primitive|If the field is greater than the value|
+|$gte|primitive|If the field is greater or equal than the value|
+|$lt|primitive|if the field is less than the value|
+|$lte|primitive|if the field is less or equal than the value|
+|$ne|primitive|if the field is not equal to the value|
+|$in|array|if the field is in the array of values|
+|$all|array|if the field is the same array than the values|
+|$like|primitive|Matches if the field is like the value (case insensitive). It admits a regex in the value|
+|$elem_match|array|Matches if any of the elements contained in the filed array has a field that matches the given expression: {$elem_match: {field:[{expression}]}}|
+
+### Campo
+
+El campo representa un atributo de la entidad de la colección sobre la que se está aplica el filtro.
+
+### Valor
+
+Representa el valor a filtar. Consideramos dos tipos de valor: primitivo y array de primitivos.
+
+#### Tipos permitidos
+
+* number
+* string
+* boolean
+* date: con el formato definido en la ISO 8601. Para poder diferencia un campo date de un campo string, el valor debe tener la forma "ISODate(date)".
+* period: con el formato definido en la ISO 8601, pero solo soporta periodos a nivel de año, mes y día. Para poder diferencia un campo period de un campo string, el valor debe tener la forma "Period(period)".
+
+#### Ejemplos de valor
+
+```
+2
+3.5
+"any string"
+true
+"ISODate(2012-07-14T01:00:00+01:00)" 
+"Period(P1Y1D)" 
+```
+
+### Ejemplos de filtro
+
+```
+api:query=[{"$gt":{"releaseDate":"ISODate(2013-01-01T00:00:00Z)"}}]
+api:query=[{"album":"Octavarium"},{"$lt":{"duration":10}}]
+api:query=[{"$in":{"categories":["pop","rock"]}}] 
+api:query=[{"$like":{"artist":"killers"}}]
+api:query=[] //Bad request, empty array
+api:query=[{"album":"Scenes form a Memory"},{}] //Bad request, empty filter object.
+api:query=[{"album":"Scenes Form a Memory", "artist":"Dream Theater"}] //Bad request, multiple attribute on a filter.
+api:query=[{"album":"Scenes Form a Memory"}, {"artist":"Dream Theater"}}] //Good 
+api:query=[{"$elem_match":{"albums":[{"$in":{"categories":["pop","rock"]}}]}}]
+```
+
+
+----------
+
+
 # API aggregation language
+
+El parámetro api:aggregation permite al usuairo realizar operaciones de agragación en las búsquedas que realice. Está formado por un JSON Object que contiene un operador y un parámetro:
+
+|Operator|Parameter|Description|Return|
+|---|---|---|---|
+|$count|"*"|Count all the elements of the request|{count : n}|
+|$count|field: String|Count all the elements of the request that contain the field "field"|{count : n}|
+|$avg|field: String|Average the parameter field of the elements of the request|{average: n}|
+|$sum|field: String|Sum the parameter field of the elements of the request|{sum: n}|
+
+## Ejemplos de agregación
+
+```
+api:aggregation={"$count":"*"} 
+api:aggregation={"$count":"field"} 
+api:aggregation={"$avg":"field"} 
+api:aggregation={"$sum":"field"}
+```
+
+
+----------
+
+
 # Negociación de contenido
+
+
+----------
+
+
 # Implementación
 
 ![resources implementation](/img/resources-implementation.png)
