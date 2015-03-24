@@ -68,7 +68,8 @@ Con estos namespaces podíramos crear las siguientes formas canónicas
 |http://ontology.bqreaders.com/api/limit|api:limit|
 
 
-----------
+   
+----------   
 
 
 # URI templates
@@ -100,7 +101,8 @@ corbel cuenta únicamente con 3 formas diferentes de URL
 ```
 
 
-----------
+   
+----------   
 
 
 # Parámetros de la petición
@@ -119,7 +121,8 @@ La petición puede contener parámetros que modifican la representación de la r
 
 
 
-----------
+   
+----------   
 
 
 # API query language
@@ -199,7 +202,8 @@ api:query=[{"$elem_match":{"albums":[{"$in":{"categories":["pop","rock"]}}]}}]
 ```
 
 
-----------
+   
+----------   
 
 
 # API aggregation language
@@ -230,7 +234,8 @@ api:aggregation={"$sum":"field"}
 ```
 
 
-----------
+   
+----------   
 
 
 # Negociación de contenido
@@ -266,7 +271,8 @@ Accept: audio/mp3
 ```
 
 
-----------
+   
+----------   
 
 
 # Implementación
