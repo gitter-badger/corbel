@@ -3,46 +3,34 @@ layout: page
 permalink: /docs/authorization.html
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contenidos**
 
-<ul>
-<li><a href="#conceptos-bsicos-autenticacin-y-autorizacin">Conceptos básicos: Autenticación y autorización</a><ul>
-<li><a href="#dominios-clientes-y-usuarios">Dominios, clientes y usuarios</a><ul>
-<li><a href="#ejemplos">Ejemplos</a></li>
-</ul>
-</li>
-<li><a href="#scopes">Scopes</a><ul>
-<li><a href="#cmo-se-definen">¿Cómo se definen?</a></li>
-<li><a href="#dnde-aplican">¿Dónde aplican?</a></li>
-<li><a href="#scopes-compuestos">Scopes compuestos</a></li>
-<li><a href="#scopes-con-parmetros-configurables">Scopes con parámetros configurables</a></li>
-<li><a href="#scopes-bsicos-por-servicios">Scopes básicos por servicios:</a></li>
-</ul>
-</li>
-<li><a href="#autenticacin">Autenticación</a><ul>
-<li><a href="#crear-un-jwt">Crear un JWT</a></li>
-<li><a href="#obtener-un-accesstoken">Obtener un accessToken</a><ul>
-<li><a href="#token-object">Token Object</a></li>
-<li><a href="#bsica-iam-basic">Básica (IAM Basic)</a></li>
-<li><a href="#basada-en-oauth">Basada en oauth</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#assets">Assets</a><ul>
-<li><a href="#incrementar-scopes-con-assets">Incrementar scopes con assets</a></li>
-</ul>
-</li>
-<li><a href="#referencia">Referencia</a><ul>
-<li><a href="#apiary">Apiary</a></li>
-<li><a href="#blog">Blog</a></li>
-<li><a href="#issues">Issues</a></li>
-<li><a href="#endpoints-del-entorno-de-desarrollo">Endpoints del entorno de desarrollo</a></li>
-</ul>
-</li>
-<li><a href="#cmo-se-ha-generado-este-documento">¿Cómo se ha generado este documento?</a></li>
-</ul>
-</li>
-</ul>
+- [Conceptos básicos: Autenticación y autorización](#conceptos-básicos-autenticación-y-autorización)
+  - [Dominios, clientes y usuarios](#dominios-clientes-y-usuarios)
+    - [Ejemplos](#ejemplos)
+  - [Scopes](#scopes)
+    - [¿Cómo se definen?](#¿cómo-se-definen)
+    - [¿Dónde aplican?](#¿dónde-aplican)
+    - [Scopes compuestos](#scopes-compuestos)
+    - [Scopes con parámetros configurables](#scopes-con-parámetros-configurables)
+    - [Scopes básicos por servicios:](#scopes-básicos-por-servicios)
+  - [Autenticación](#autenticación)
+    - [Crear un JWT](#crear-un-jwt)
+    - [Obtener un accessToken](#obtener-un-accesstoken)
+      - [Token Object](#token-object)
+      - [Básica (IAM Basic)](#básica-iam-basic)
+      - [Basada en oauth](#basada-en-oauth)
+  - [Assets](#assets)
+    - [Incrementar scopes con assets](#incrementar-scopes-con-assets)
+  - [Referencia](#referencia)
+    - [[Apiary](http://docs.silkroadiam.apiary.io/)](#apiaryhttpdocssilkroadiamapiaryio)
+    - [[Blog](https://confluence.bq.com/display/SILKROAD/SilkRoad+Home)](#bloghttpsconfluencebqcomdisplaysilkroadsilkroadhome)
+    - [[Issues](https://jira.bq.com/secure/RapidBoard.jspa?rapidView=147&view=detail)](#issueshttpsjirabqcomsecurerapidboardjsparapidview147&viewdetail)
+    - [Endpoints del entorno de desarrollo](#endpoints-del-entorno-de-desarrollo)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Conceptos básicos: Autenticación y autorización
 
@@ -235,7 +223,7 @@ Los Scopes se pueden aplicar tanto a `Domain`, como `Client` o `User`, para cons
 
 Finalmente, una petición utilizará la intersección de los Scopes definidos por `Client` y `User`, que a su vez será un subconjunto de los Scopes definidos por `Domain`.
 
-![scopes intersection](/img/scopes-intersection.png)
+![scopes intersection](../img/scopes-intersection.png)
  
 La lista de Scopes quedará almacenadas en la base de datos de IAM. Esta lista contendrá los nombre únicos que identifican a cada Scope. A continuación se muestra un ejemplo con las entradas necesarias en la base de datos para definir una serie de Scopes para un `Domain`, `Client` y `User`:
 
@@ -776,9 +764,9 @@ curl 'https://iam.bqws.io/v1.0/oauth/token'
 OAuth es un protocolo open source, que permite autorización segura de una API de modo estándar y simple para aplicaciones de escritorio, móviles y web.
 OAuth permite a un usuario del sitio A compartir su información en el sitio A (proveedor de servicio) con el sitio B (llamado consumidor) sin compartir toda su identidad.
 
-![oauth basic diagram](/img/oauth-basic.png)
+![oauth basic diagram](../img/oauth-basic.png)
 
-![oauth flow diagram](/img/oauth-flow.jpg)
+![oauth flow diagram](../img/oauth-flow.jpg)
 
 1. Crear credenciales de aplicación en el servicio externo
   * Crear aplicación en Facebook [Pendiente]
