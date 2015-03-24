@@ -135,7 +135,7 @@ El campo representa un atributo de la entidad de la colección sobre la que se e
 
 ### Valor
 
-Representa el valor a filtar. Consideramos dos tipos de valor: primitivo y array de primitivos.
+Representa el valor a filtar. Consideramos dos tipos de valor: primitivo, array de primitivos y array de filtros (solo para $elem_match).
 
 #### Tipos permitidos
 
@@ -144,6 +144,7 @@ Representa el valor a filtar. Consideramos dos tipos de valor: primitivo y array
 * boolean
 * date: con el formato definido en la ISO 8601. Para poder diferencia un campo date de un campo string, el valor debe tener la forma "ISODate(date)".
 * period: con el formato definido en la ISO 8601, pero solo soporta periodos a nivel de año, mes y día. Para poder diferencia un campo period de un campo string, el valor debe tener la forma "Period(period)".
+* array
 
 #### Ejemplos de valor
 
@@ -154,6 +155,7 @@ Representa el valor a filtar. Consideramos dos tipos de valor: primitivo y array
 true
 "ISODate(2012-07-14T01:00:00+01:00)" 
 "Period(P1Y1D)" 
+[2, 3, 4]
 ```
 
 ### Ejemplos de filtro
@@ -176,7 +178,14 @@ api:query=[{"$elem_match":{"albums":[{"$in":{"categories":["pop","rock"]}}]}}]
 
 # API aggregation language
 
-El parámetro api:aggregation permite al usuairo realizar operaciones de agragación en las búsquedas que realice. Está formado por un JSON Object que contiene un operador y un parámetro:
+El parámetro api:aggregation permite al usuario realizar operaciones de agregación en los listados. Está formado por un JSON Object que contiene un operador y un parámetro:
+
+
+```
+{
+	operador: parámetro
+}
+```
 
 |Operator|Parameter|Description|Return|
 |---|---|---|---|
@@ -200,10 +209,53 @@ api:aggregation={"$sum":"field"}
 
 # Negociación de contenido
 
+En ocasiones, es posible que existan diferentes representaciones de un mismo recurso. Siguiendo los los standards HTTP, un cliente puede obtener la representación que desee mediante el uso de la cabecera Accept en la petición. En el caso de que el cliente no especifique la representación mediante esta cabecera, el servidor siempre tratará de devolver la representación que tiene establecida por defecto: application/json.
+
+Cuando existen multiples representaciones de un recurso, el servidor devolverá la cabecera Alternates indicando las representaciones disponibles.
+
+## Ejemplo de negociación
+
+El siguiente ejemplo muestra como obtener las representaciones disponibles de un determinado recurso de audio
+
+* Client request
+
+```
+HEAD /resource/media:Track/555 HTTP/1.1
+Accept: audio/*
+```
+
+* Server response
+
+```
+HTTP/1.1 300 Multiple Choices
+Alternates: {"/resource/media:Track/555" 1.0 {type audio/mp3}}, {"/resource/media:Track/555" 0.7 {type audio/audio/x-ms-wmal}}
+Vary: negotiate, accept
+```
+
+* Client request
+
+```
+GET /resource/media:Track/555 HTTP/1.1
+Accept: audio/mp3
+```
+
 
 ----------
 
 
 # Implementación
 
+La implementación de la API de recursos se basa en una arquitectura modular que permite la extensibilidad de la APi a nuevos dominios.
+
 ![resources implementation](/img/resources-implementation.png)
+
+## REM
+
+## RESMI
+
+## RESTOR
+
+## IMAGE
+
+
+
