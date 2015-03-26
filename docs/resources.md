@@ -92,7 +92,8 @@ corbel cuenta únicamente con 3 formas diferentes de URL
 /resource/entity:Artist/123
 ```
 
-* **Relation**: relación entre un recurso particular y una colección. URI template: /resource/{collection}/{resource_id}/{relation_collection} Para referirse a un recurso de la relación en particular, se hace mediante un matrix param "r" con el template {relation_collection}/{resource_id}
+* **Relation**: relación entre un recurso particular y una colección. URI template: /resource/{collection}/{resource_id}/{relation_collection} 
+Para referirse a un recurso de la relación en particular, se hace mediante un matrix param "r" con el template {relation_collection}/{resource_id}
 
 ```
 /resource/media:Album/456/media:Track
@@ -241,35 +242,6 @@ api:aggregation={"$sum":"field"}
 # Negociación de contenido
 
 En ocasiones, es posible que existan diferentes representaciones de un mismo recurso. Siguiendo los los standards HTTP, un cliente puede obtener la representación que desee mediante el uso de la cabecera Accept en la petición. En el caso de que el cliente no especifique la representación mediante esta cabecera, el servidor siempre tratará de devolver la representación que tiene establecida por defecto: application/json.
-
-Cuando existen multiples representaciones de un recurso, el servidor devolverá la cabecera Alternates indicando las representaciones disponibles.
-
-## Ejemplo de negociación
-
-El siguiente ejemplo muestra como obtener las representaciones disponibles de un determinado recurso de audio
-
-* Client request
-
-```
-HEAD /resource/media:Track/555 HTTP/1.1
-Accept: audio/*
-```
-
-* Server response
-
-```
-HTTP/1.1 300 Multiple Choices
-Alternates: {"/resource/media:Track/555" 1.0 {type audio/mp3}}, {"/resource/media:Track/555" 0.7 {type audio/audio/x-ms-wmal}}
-Vary: negotiate, accept
-```
-
-* Client request
-
-```
-GET /resource/media:Track/555 HTTP/1.1
-Accept: audio/mp3
-```
-
 
    
 ----------   
