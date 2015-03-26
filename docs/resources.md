@@ -92,12 +92,12 @@ corbel cuenta únicamente con 3 formas diferentes de URL
 /resource/entity:Artist/123
 ```
 
-* **Relation**: relación entre un recurso particular y una colección. URI template: /resource/{collection}/{resource_id}/{relation_collection}
+* **Relation**: relación entre un recurso particular y una colección. URI template: /resource/{collection}/{resource_id}/{relation_collection} Para referirse a un recurso de la relación en particular, se hace mediante un matrix param "r" con el template {relation_collection}/{resource_id}
 
 ```
-/resource/media:Album/456/media:tracks
-/resource/media:Book/555/media:authors
-/resource/media:Videogame/asdf/media:related
+/resource/media:Album/456/media:Track
+/resource/media:Book/555/media:Author
+/resource/media:Videogame/asdf/media:Related;r=media:Related/123
 ```
 
 
