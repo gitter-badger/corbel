@@ -45,7 +45,7 @@ https://resources-staging.bqws.io/v1.0/resource/media:Track/555
 
 ## URIs: completas vs forma canónica
 
-Todo recurso en la API se identifica a través de su URI. En corbel, por razones prácticas, siempre utilizamos la forma canónoca de la URI (canonical form), formada por namespace:id, en lugar de la URI 'completa' (fully qualified name). Los namespaces se definen mediante la propia API y los clientes los pueden consultar en /api/namespaces
+Todo recurso en la API se identifica a través de su URI. En corbel, por razones prácticas, siempre utilizamos la forma canónica de la URI (canonical form), formada por namespace:id, en lugar de la URI 'completa' (fully qualified name). Los namespaces se definen mediante la propia API y los clientes los pueden consultar en /api/namespaces
 
 
 ### Ejemplo namespaces
@@ -58,7 +58,7 @@ Todo recurso en la API se identifica a través de su URI. En corbel, por razones
     "api": "http://ontology.bqreaders.com/api/"
 }
 ```
-Con estos namespaces podíramos crear las siguientes formas canónicas
+Con estos namespaces podríamos crear las siguientes formas canónicas
 
 |URI|Canonical form|
 |---|---|
@@ -107,7 +107,7 @@ corbel cuenta únicamente con 3 formas diferentes de URL
 
 # Parámetros de la petición
 
-La petición puede contener parámetros que modifican la representación de la respuesta. Dichos parámetros deben ser especificados mediante su forma conónica.
+La petición puede contener parámetros que modifican la representación de la respuesta. Dichos parámetros deben ser especificados mediante su forma canónica.
 
 ## Parámetros permitidos
 
@@ -127,7 +127,7 @@ La petición puede contener parámetros que modifican la representación de la r
 
 # API query language
 
-El parámetro api:query permite al usuaio realizar filtros en las búsquedas. Dicho parámetro debe ser epecificado como JSON Array, no vacío, donde cada elemento es un filtro que se aplicará en la llamada. Cada filtro, a su vez, es un JSON Object que tampoco puede estar sin contenido.
+El parámetro api:query permite al cliente realizar filtros en las búsquedas. Dicho parámetro debe ser especificado como JSON Array, no vacío, donde cada elemento es un filtro que se aplicará en la llamada. Cada filtro, a su vez, es un JSON Object que tampoco puede estar sin contenido.
 
 ## Filtros
 
@@ -164,14 +164,14 @@ El campo representa un atributo de la entidad de la colección sobre la que se e
 
 ### Valor
 
-Representa el valor a filtar. Consideramos dos tipos de valor: primitivo, array de primitivos y array de filtros (solo para $elem_match).
+Representa el valor a filtrar. Consideramos 3 tipos de valor: primitivo, array de primitivos y array de filtros* (solo para $elem_match).
 
 #### Tipos permitidos
 
 * number
 * string
 * boolean
-* date: con el formato definido en la ISO 8601. Para poder diferencia un campo date de un campo string, el valor debe tener la forma "ISODate(date)".
+* date: con el formato definido en la ISO 8601. Para poder diferenciar un campo date de un campo string, el valor debe tener la forma "ISODate(date)".
 * period: con el formato definido en la ISO 8601, pero solo soporta periodos a nivel de año, mes y día. Para poder diferencia un campo period de un campo string, el valor debe tener la forma "Period(period)".
 * array
 
@@ -242,11 +242,11 @@ api:aggregation={"$sum":"field"}
 
 En ocasiones, es posible que existan diferentes representaciones de un mismo recurso. Siguiendo los los standards HTTP, un cliente puede obtener la representación que desee mediante el uso de la cabecera Accept en la petición. En el caso de que el cliente no especifique la representación mediante esta cabecera, el servidor siempre tratará de devolver la representación que tiene establecida por defecto: application/json.
 
-Cuando existen multiples representaciones de un recurso, el servidor devolverá la cabecera Alternates indicando las representaciones disponibles.
+Cuando existen múltiples representaciones de un recurso, el servidor devolverá la cabecera Alternates indicando las representaciones disponibles.
 
 ## Ejemplo de negociación
 
-El siguiente ejemplo muestra como obtener las representaciones disponibles de un determinado recurso de audio
+El siguiente ejemplo muestra cómo obtener las representaciones disponibles de un determinado recurso de audio
 
 * Client request
 
@@ -295,7 +295,7 @@ Existen 3 plugin genéricos:
 
 * RESMI. Resuelve todas las peticiones cuyo MediaType sea application/json.
 
-* RESTOR. Resuleve todas las peticiones GET, PUT y DELETE de cualquier MediaType. Este plugin se encarga de gestionar los binarios.
+* RESTOR. Resuelve todas las peticiones GET, PUT y DELETE de cualquier MediaType. Este plugin se encarga de gestionar los binarios.
 
 * IMAGE. Resuelve aquellas peticiones GET cuyo MediaType sea image/*. Este plugin se usa para hacer escalados de imagenes.
 
