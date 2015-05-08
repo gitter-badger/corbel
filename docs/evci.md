@@ -25,7 +25,7 @@ Los eventos no son más que un json con formato libre, que deberá atenerse al e
 
 # EVCI API
 
-La api de evci se compone de un solo endpoint que se corresponde a la acción de enviar evento. Los detalles a cerca del enpoint pueden consultarse en [apiary](http://docs.silkroadevci.apiary.io/)
+La api de evci se compone de un solo endpoint que se corresponde a la acción de enviar evento. Los detalles a cerca del enpoint pueden consultarse en [apiary](http://docs.silkroadevci.apiary.io/).
 
 Un ejemplo de petición a evci podría ser el siguiente:
 
@@ -60,6 +60,6 @@ Como todas las api's de corbel, evci necesita de autorización. Para ello, hay q
 
 Los eworkers son los plugins de EVCI. Son programados en java y tienen que implementar la eworker-api de la que provee Corbel. Una vez programado, el eworker se registra para un tipo de evento, que es el path param del endpoint de EVCI. Una vez registrado, este eworker será el que procese los eventos de su tipo, y será responsable de validar el formato del evento.
 
-Un ejemplo de eworker es el logs-eworker, que es el encargado de procesar y almacenar los logs de los clientes. La información de esta api se encuentra en [apiary](http://docs.silkroadclientlog.apiary.io/))
+Un ejemplo de eworker es el logs-eworker, que es el encargado de procesar y almacenar los logs de los clientes. La información de esta api se encuentra en [apiary](http://docs.silkroadclientlog.apiary.io/).
 
 
