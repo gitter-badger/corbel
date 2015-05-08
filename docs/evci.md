@@ -19,7 +19,7 @@ permalink: /docs/evci.html
 
 EVCI (EVents Common Interface) es un módulo de corbel para escuchar eventos de forma asíncrona. Esto es útil cuando al cliente no le interesa esperar al procesamiento de una petición para recibir respuesta. También cuando se produce un evento muchas veces de forma simultanea, ya que evci utiliza un sistema de colas para no bloquear la api durante el procesamiento de los eventos, y asegura que el orden de llegada de los eventos será el orden en el que serán atendidos. 
 
-El comportamiento para responder a esos eventos es fácilmente extensible a trabes de Eworkers, que son plugins programados en Java.
+El comportamiento para responder a esos eventos es fácilmente extensible a través de Eworkers, que son plugins programados en Java.
 
 Los eventos no son más que un json con formato libre, que deberá atenerse al eworker que lo vaya a escuchar.
 
