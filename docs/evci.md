@@ -1,4 +1,3 @@
-
 ---
 layout: page
 permalink: /docs/evci.html
@@ -8,10 +7,10 @@ permalink: /docs/evci.html
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Contenidos**
 
-- [Conceptos básicos: Eventos asíncronos](#conceptos-b%C3%A1sicos-eventos-as%C3%ADncronos)
+- [Conceptos básicos: Eventos asíncronos](#conceptos-basicos-eventos-asincronos)
 - [EVCI API](#evci-api)
   - [Versionado](#versionado)
-  - [Autorización](#autorizaci%C3%B3n)
+  - [Autorización](#autorizacion)
   - [Eworkers](#eworkers)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
